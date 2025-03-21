@@ -1,0 +1,1095 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>X Clone</title>
+    <link href="./output.css" rel="stylesheet">
+
+    <style>
+        /* Add custom styles here */
+        .conatiner{
+            height:90vh;
+            overflow-y: auto;
+        }
+        .bottom{
+            height: 90vh; /* Full viewport height */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .showmore {
+            color: rgb(7, 148, 235);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.1s ease-in-out;
+            display: inline-block;
+            position: relative;
+        }
+    
+        .showmore:hover {
+            color: rgb(255, 94, 0);
+            transform: scale(1.1);
+            text-shadow: 0px 0px 10px rgba(7, 148, 235, 0.7);
+        }
+    
+        .showmore::after {
+            content: " ➜";
+            opacity: 0;
+            transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+            transform: translateX(-5px);
+        }
+    
+        .showmore:hover::after {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+
+        .top {
+            display: flex;
+            height: 60px;
+            border-bottom: 2px solid #0a0a0a;
+            background: linear-gradient(to right, #0d0d0d, #1a1a1a);
+            opacity: 1;
+            align-items: center;
+        }
+        .top.scrolled {
+            background: rgba(13, 13, 13, 0.7);
+            opacity: 0.8;
+        }
+    
+        .top div {
+            flex: 1;
+            font-size: larger;
+            color: white;
+            font-weight: 500;
+            transition: all 0.1s ease-in-out;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+        }
+    
+        .top div:hover {
+            font-weight: bold;
+            color: #007bff;
+            text-shadow: 0px 0px 10px rgba(0, 123, 255, 0.7);
+        }
+    
+        .top div::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: #007bff;
+            transition: width 0.1s ease-in-out, left 0.1s ease-in-out;
+        }
+    
+        .top div:hover::after {
+            width: 60%;
+            left: 20%;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+    <div class="flex container mx-auto my-4">
+        <div class="first w-[60%]">
+            <div class="logo invert  my-4 " style="padding-left: 18px;">
+                <svg class="w-8" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100"
+                    viewBox="0 0 24 24">
+                    <path
+                        d="M 2.3671875 3 L 9.4628906 13.140625 L 2.7402344 21 L 5.3808594 21 L 10.644531 14.830078 L 14.960938 21 L 21.871094 21 L 14.449219 10.375 L 20.740234 3 L 18.140625 3 L 13.271484 8.6875 L 9.2988281 3 L 2.3671875 3 z M 6.2070312 5 L 8.2558594 5 L 18.033203 19 L 16.001953 19 L 6.2070312 5 z">
+                    </path>
+                </svg>
+            </div>
+            <div class="sidebar flex justify-end">
+                <ul class="flex flex-col text-2xl space-y-3">
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">home</span>
+                        Home
+                    </li>
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">search</span>
+                        Explore
+                    </li>
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">notifications</span>
+                        Notifications
+                    </li>
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">mail</span>
+                        Messages
+                    </li>
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">list_alt</span>
+                        Lists
+                    </li>
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">bookmark</span>
+                        Bookmarks
+                    </li>
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">groups</span>
+                        Communities
+                    </li>
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">crown</span>
+                        Premium
+                    </li>
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">person</span>
+                        Profile
+                    </li>
+                    <li class="flex justify-start items-center gap-4 text-lg cursor-pointer p-3"
+                        style="padding:15px; transition: background 0.1s ease-in-out; border-radius: 40px;"
+                        onmouseover="this.style.backgroundColor='#151515'"
+                        onmouseout="this.style.backgroundColor='transparent'">
+                        <span class="material-symbols-outlined" style="font-size: 40px;">more_vert</span>
+                        More
+                    </li>
+                </ul>
+            </div>
+            <div class="footer">
+            <div class="post" style="background-color:white;color:#0a0a0a; padding-left:3px; display:flex;font-size:x-large; justify-content:center;align-items:center;border-radius:30px;width:182px;height:54px;font-weight:bolder">
+                Post
+            </div>
+            <!-- <div class="profile" style="padding: 24px;">for profile</div> -->
+        </div>
+    </div>
+        <div class="second w-full border-[1px] border-x-gray-700 border-y-black"style="postion:absolute">
+
+            <!-- Top Bar -->
+            <div class="top">
+                <div class="forU">For You</div>
+                <div class="follow">Following</div>
+                <div class="Telangana_politics">Telangana politics</div>
+            </div>
+            <!-- bottom -->
+
+            <div class="bottom">
+                <div class="item1 flex" style="
+                background: linear-gradient(135deg, rgb(0, 0, 0), rgba(0, 0, 0, 0.708));  
+                padding: 15px; 
+                margin-top: 0px; 
+                box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+                transition: background 0.1s ease, box-shadow 0.1s ease;border-bottom: 0.3px solid #4e4e4e;" onmouseover="this.style.background='linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(20, 20, 20, 1))'; 
+                             this.style.boxShadow='0px 0px 15px rgba(255, 255, 255, 0.15)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.708))'; 
+                            this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';">
+    
+                    <div class="img" style="padding-left: 10px; color: white;">
+                        <img src="./images/myPic copy.jpeg" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; 
+                transition: transform 0.1s ease, box-shadow 0.1s ease;"
+                            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    </div>
+    
+                    <div class="secPart" style="padding-left: 10px; width: 500px;">
+                        <div class="secp1" style="padding: 15px;">
+                            <input type="text" class="" placeholder="Search" style="width: 95%; background-color: rgb(49, 48, 48); 
+                                      border-radius: 40px; border: none; color: white; 
+                                      padding: 10px; 
+                                      box-shadow: 0px 0px 8px rgba(238, 235, 235, 0.5);
+                                      transition: box-shadow 0.1s ease, transform 0.1s ease;" onmouseover="this.style.boxShadow='0px 0px 12px rgba(255, 255, 255, 0.8)'; 
+                                            this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0px 0px 8px rgba(238, 235, 235, 0.5)'; 
+                                           this.style.transform='scale(1)';" onfocus="this.style.boxShadow='0px 0px 15px rgba(7, 148, 235, 0.9)'; 
+                                        this.style.outline='none';"
+                                onblur="this.style.boxShadow='0px 0px 8px rgba(238, 235, 235, 0.5)';">
+                        </div>
+    
+                        <div class="secPart"
+                            style="color: rgb(7, 148, 235); font-weight: bolder; padding-left: 10px; cursor: pointer;
+                        transition: color 0.1s ease, transform 0.1s ease, text-shadow 0.1s ease; border-bottom: 2px solid #757575;"
+                            onmouseover="this.style.color='rgba(255, 255, 255, 0.9)'; 
+                                     this.style.transform='scale(01.05)'; 
+                                     this.style.textShadow='0px 0px 10px rgba(7, 148, 235, 0.8)';" onmouseout="this.style.color='rgba(7, 148, 235, 0.863)'; 
+                                    this.style.transform='scale(1)'; 
+                                    this.style.textShadow='none';">
+                            Everyone can reply
+                        </div>
+    
+                        <div class="secPart2" style="display: flex; justify-content: space-between; padding-top:10px">
+                            <div class="icons" style="display: flex; gap: 15px; padding-left: 10px; padding-top: 15px;">
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(7, 148, 235); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';">image</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(7, 148, 235); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';">gif_box</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(7, 148, 235); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';">ballot</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(7, 148, 235); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';">mood</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(7, 148, 235); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';">calendar_today</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(7, 148, 235); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';">location_on</span>
+                            </div>
+    
+                            <div class="post">
+                                <button style="background-color: white; 
+                                    color: black; 
+                                    font-weight: bold;
+                                    border: none;
+                                    padding: 6px 12px;
+                                    border-radius: 20px;
+                                    cursor: pointer;
+                                    transition: background-color 0.1s ease, transform 0.2s ease;"
+                                    onmouseover="this.style.backgroundColor='rgb(220, 220, 220)'; this.style.transform='scale(1.05)';"
+                                    onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
+                                    Post
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <!-- second item -->
+                <div class="item2 flex" style="
+                background: linear-gradient(135deg, rgb(0, 0, 0), rgb(32, 31, 31));  
+                padding: 15px; 
+                margin-top: 0px; 
+                box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+                transition: background 0.1s ease, box-shadow 0.1s ease;border-bottom: 0.3px solid #4e4e4e;" onmouseover="this.style.background='linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 1))'; 
+                             this.style.boxShadow='0px 0px 15px rgba(255, 255, 255, 0.15)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0,0,0,0.707))'; 
+                            this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';">
+    
+                    <div class="img" style="padding-left: 10px; color: white;">
+                        <img src="./images/em.jpg" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; 
+                transition: transform 0.1s ease, box-shadow 0.1s ease;"
+                            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    </div>
+    
+                    <div class="secPart" style="padding-left: 10px; width: 500px;">
+                        <div class="secp1" style="display:flex;gap:6px">
+                            <div class="name" style="font-weight:bold;font-size:larger">Elon Musk</div>
+                            <div class="handle"style="color: #808080;font-weight:bold">@elonmusk · 4h</div>
+                        </div>
+    
+                        <div class="secPart1">
+                            <img src="./images/rocket.jpeg" alt="" style="border-radius: 15px; object-fit:cover; transition: transform 0.1s ease, box-shadow 0.1s ease;" onmouseover="this.style.transform='scale(1.008)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                        </div>
+    
+                        <div class="secPart2" style="display: flex; justify-content: space-between; padding-top:10px;">
+                            <div class="icons" style="display: flex; gap: 15px; padding-left: 10px; padding-top: 15px; gap:75px">
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover=" this.style.color='rgb(7, 148, 235)'; this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">chat_bubble</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">repeat</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">favorite</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bar_chart</span>
+    
+                                <div class="saveShare" style="display:flex">
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bookmark</span>
+    
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">ios_share</span>
+                                </div>
+                            </div>
+    
+    
+                        </div>
+                    </div>
+                </div>
+    
+    
+    
+    
+                <div class="item3 flex" style="
+                background: linear-gradient(135deg, rgb(0, 0, 0), rgb(32, 31, 31));  
+                padding: 15px; 
+                margin-top: 0px; 
+                box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+                transition: background 0.1s ease, box-shadow 0.1s ease;border-bottom: 0.3px solid #4e4e4e;" onmouseover="this.style.background='linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 1))'; 
+                             this.style.boxShadow='0px 0px 15px rgba(255, 255, 255, 0.15)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0,0,0,0.707))'; 
+                            this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';">
+    
+                    <div class="img" style="padding-left: 10px; color: white;">
+                        <img src="./images/b10.jpg" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; 
+                transition: transform 0.1s ease, box-shadow 0.1s ease;"
+                            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    </div>
+    
+                    <div class="secPart" style="padding-left: 10px; width: 500px;">
+                        <div class="secp1" style="display:flex;gap:6px">
+                            <div class="name" style="font-weight:bold;font-size:larger">Sad</div>
+                            <div class="handle"style="color: #808080;font-weight:bold">@isadtuti · 1m</div>
+                        </div>
+    
+                        <div class="secPart1">
+                            <img src="./images/p2.jpeg" alt="" style="border-radius: 15px; object-fit:cover; transition: transform 0.1s ease, box-shadow 0.1s ease;" onmouseover="this.style.transform='scale(1.008)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                        </div>
+    
+                        <div class="secPart2" style="display: flex; justify-content: space-between; padding-top:10px;">
+                            <div class="icons" style="display: flex; gap: 15px; padding-left: 10px; padding-top: 15px; gap:75px">
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover=" this.style.color='rgb(7, 148, 235)'; this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">chat_bubble</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">repeat</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">favorite</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bar_chart</span>
+    
+                                <div class="saveShare" style="display:flex">
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bookmark</span>
+    
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">ios_share</span>
+                                </div>
+                            </div>
+    
+    
+                        </div>
+                    </div>
+                </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                <div class="item4 flex" style="
+                background: linear-gradient(135deg, rgb(0, 0, 0), rgb(32, 31, 31));  
+                padding: 15px; 
+                margin-top: 0px; 
+                box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+                transition: background 0.1s ease, box-shadow 0.1s ease;border-bottom: 0.3px solid #4e4e4e;" onmouseover="this.style.background='linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 1))'; 
+                             this.style.boxShadow='0px 0px 15px rgba(255, 255, 255, 0.15)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0,0,0,0.707))'; 
+                            this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';">
+    
+                    <div class="img" style="padding-left: 10px; color: white;">
+                        <img src="./images/t.jpg" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; 
+                transition: transform 0.1s ease, box-shadow 0.1s ease;"
+                            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    </div>
+    
+                    <div class="secPart" style="padding-left: 10px; width: 500px;">
+                        <div class="secp1" style="display:flex;gap:6px">
+                            <div class="name" style="font-weight:bold;font-size:larger">thaman S</div>
+                            <div class="handle"style="color: #808080;font-weight:bold">@MusicThaman · 2h</div>
+                        </div>
+    
+                        <div class="secPart1">
+                            <!-- <img src="./images/rocket.jpeg" alt="" style="border-radius: 15px; object-fit:cover; transition: transform 0.1s ease, box-shadow 0.1s ease;" onmouseover="this.style.transform='scale(1.008)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"> -->
+                            <video id = "myVideo1" src="./images/vid2.mov"  onclick="playWithSound('myVideo1')" controls></video>
+                        </div>
+    
+                        <div class="secPart2" style="display: flex; justify-content: space-between; padding-top:10px;">
+                            <div class="icons" style="display: flex; gap: 15px; padding-left: 10px; padding-top: 15px; gap:75px">
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover=" this.style.color='rgb(7, 148, 235)'; this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">chat_bubble</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">repeat</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">favorite</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bar_chart</span>
+    
+                                <div class="saveShare" style="display:flex">
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bookmark</span>
+    
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">ios_share</span>
+                                </div>
+                            </div>
+    
+    
+                        </div>
+                    </div>
+                </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                <div class="item5 flex" style="
+                background: linear-gradient(135deg, rgb(0, 0, 0), rgb(32, 31, 31));  
+                padding: 15px; 
+                margin-top: 0px; 
+                box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+                transition: background 0.1s ease, box-shadow 0.1s ease;border-bottom: 0.3px solid #4e4e4e;" onmouseover="this.style.background='linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 1))'; 
+                             this.style.boxShadow='0px 0px 15px rgba(255, 255, 255, 0.15)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0,0,0,0.707))'; 
+                            this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';">
+    
+                    <div class="img" style="padding-left: 10px; color: white;">
+                        <img src="./images/Myt.jpg" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; 
+                transition: transform 0.1s ease, box-shadow 0.1s ease;"
+                            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    </div>
+    
+                    <div class="secPart" style="padding-left: 10px; width: 500px;">
+                        <div class="secp1" style="display:flex;gap:6px">
+                            <div class="name" style="font-weight:bold;font-size:larger">
+                                Mythri Movie Makers
+                                </div>
+                            <div class="handle"style="color: #808080;font-weight:bold">@Mythrioffical · 2h</div>
+                        </div>
+    
+                        <div class="secPart1">
+                            <div class="txt">
+                                A shoot day with our #JAAT ❤‍🔥
+    
+    The action-packed #JaatTrailer out soon 💥💥
+    
+    GRAND RELEASE WORLDWIDE ON APRIL 10th 🔥
+    
+    #BaisakhiWithJaat 
+    
+    Starring Action Superstar 
+    @iamsunnydeol
+    
+    Directed by 
+    @megopichand
+    
+    Produced by 
+    @MythriOfficial
+     & 
+    @peoplemediafcy
+     
+    A 
+    @MusicThaman
+     Mass Beat
+    Show more
+                            </div>
+                            <!-- <img src="./images/rocket.jpeg" alt="" style="border-radius: 15px; object-fit:cover; transition: transform 0.1s ease, box-shadow 0.1s ease;" onmouseover="this.style.transform='scale(1.008)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"> -->
+                            <video id = "myVideo2" src="./images/vid3.mov" onclick="playWithSound('myVideo2')" controls></video>
+                        </div>
+    
+                        <div class="secPart2" style="display: flex; justify-content: space-between; padding-top:10px;">
+                            <div class="icons" style="display: flex; gap: 15px; padding-left: 10px; padding-top: 15px; gap:75px">
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover=" this.style.color='rgb(7, 148, 235)'; this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">chat_bubble</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">repeat</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">favorite</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bar_chart</span>
+    
+                                <div class="saveShare" style="display:flex">
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bookmark</span>
+    
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">ios_share</span>
+                                </div>
+                            </div>
+    
+    
+                        </div>
+                    </div>
+                </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                <div class="item6 flex" style="
+                background: linear-gradient(135deg, rgb(0, 0, 0), rgb(32, 31, 31));  
+                padding: 15px; 
+                margin-top: 0px; 
+                box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+                transition: background 0.1s ease, box-shadow 0.1s ease;border-bottom: 0.3px solid #4e4e4e;" onmouseover="this.style.background='linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 1))'; 
+                             this.style.boxShadow='0px 0px 15px rgba(255, 255, 255, 0.15)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0,0,0,0.707))'; 
+                            this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';">
+    
+                    <div class="img" style="padding-left: 10px; color: white;">
+                        <img src="./images/pm.jpg" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; 
+                transition: transform 0.1s ease, box-shadow 0.1s ease;"
+                            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    </div>
+    
+                    <div class="secPart" style="padding-left: 10px; width: 500px;">
+                        <div class="secp1" style="display:flex;gap:6px">
+                            <div class="name" style="font-weight:bold;font-size:larger">PMO INDIA</div>
+                            <div class="handle"style="color: #808080;font-weight:bold">@PMOIndia · 3h</div>
+                        </div>
+    
+                        <div class="secPart1">
+                            <!-- <img src="./images/rocket.jpeg" alt="" style="border-radius: 15px; object-fit:cover; transition: transform 0.1s ease, box-shadow 0.1s ease;" onmouseover="this.style.transform='scale(1.008)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"> -->
+                            <div class="txt">
+                                ଜଣେ ଦକ୍ଷ ପ୍ରଶାସକ ଏବଂ ବିଦ୍ୱାନ ଭାବେ ଶ୍ରୀ ରମାକାନ୍ତ ରଥ ନିଜ ପାଇଁ ସ୍ୱତନ୍ତ୍ର ପରିଚୟ ସୃଷ୍ଟି କରିଥିଲେ । ବିଶେଷ କରି ତାଙ୍କର କାବ୍ୟ କୃତିଗୁଡ଼ିକ ସମାଜର ସବୁ ବର୍ଗଙ୍କ ମଧ୍ୟରେ ଲୋକପ୍ରିୟ ହୋଇଥିଲା । ତାଙ୍କର ବିୟୋଗରେ ମର୍ମାହତ । ଏହି ଦୁଃଖଦ ସମୟରେ ମୁଁ ତାଙ୍କ ପରିବାର ଓ ପ୍ରଶଂସକଙ୍କ ପ୍ରତି ସମବେଦନା ଜ୍ଞାପନ କରୁଛି । ଓଁ
+                            </div>
+                            <div class="showmore">
+                                Show more
+                            </div>
+                        </div>
+    
+                        <div class="secPart2" style="display: flex; justify-content: space-between; padding-top:10px;">
+                            <div class="icons" style="display: flex; gap: 15px; padding-left: 10px; padding-top: 15px; gap:75px">
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover=" this.style.color='rgb(7, 148, 235)'; this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">chat_bubble</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">repeat</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">favorite</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bar_chart</span>
+    
+                                <div class="saveShare" style="display:flex">
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bookmark</span>
+    
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">ios_share</span>
+                                </div>
+                            </div>
+    
+    
+                        </div>
+                    </div>
+                </div>
+    
+    
+    
+    
+    
+    
+                <div class="item7 flex" style="
+                background: linear-gradient(135deg, rgb(0, 0, 0), rgb(32, 31, 31));  
+                padding: 15px; 
+                margin-top: 0px; 
+                box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+                transition: background 0.1s ease, box-shadow 0.1s ease;border-bottom: 0.3px solid #4e4e4e;" onmouseover="this.style.background='linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 1))'; 
+                             this.style.boxShadow='0px 0px 15px rgba(255, 255, 255, 0.15)';" onmouseout="this.style.background='linear-gradient(135deg, rgba(0, 0, 0, 0), rgba(0,0,0,0.707))'; 
+                            this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';">
+    
+                    <div class="img" style="padding-left: 10px; color: white;">
+                        <img src="./images/rcb.jpg" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover; 
+                transition: transform 0.1s ease, box-shadow 0.1s ease;"
+                            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">
+                    </div>
+    
+                    <div class="secPart" style="padding-left: 10px; width: 500px;">
+                        <div class="secp1" style="display:flex;gap:6px">
+                            <div class="name" style="font-weight:bold;font-size:larger">Royal Challengers Bengaluru</div>
+                            <div class="handle"style="color: #808080;font-weight:bold">@RCBTweets
+                                ·
+                                3h</div>
+                        </div>
+    
+                        <div class="secPart1">
+                            <!-- <img src="./images/rocket.jpeg" alt="" style="border-radius: 15px; object-fit:cover; transition: transform 0.1s ease, box-shadow 0.1s ease;" onmouseover="this.style.transform='scale(1.008)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.5)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"> -->
+                            <div class="txt">
+                                Can sports be the key to unlocking India's youth potential? 🇮🇳
+                                <br><br><br>
+    🎥 Watch Jayant Chaudhary, Minister of State (Independent Charge) for Skill Development & Entrepreneurship, and Minister of State for Education, Govt. of India, share the government's vision for empowering youth
+                            </div>
+                            <div class="showmore">
+                                Show more
+                            </div>
+                            <video id = "myVideo3" src="./images/Rcb.mov" controls onclick="playWithSound('myVideo3')"></video>
+                        </div>
+    
+                        <div class="secPart2" style="display: flex; justify-content: space-between; padding-top:10px;">
+                            <div class="icons" style="display: flex; gap: 15px; padding-left: 10px; padding-top: 15px; gap:75px">
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover=" this.style.color='rgb(7, 148, 235)'; this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">chat_bubble</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">repeat</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">favorite</span>
+                                <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bar_chart</span>
+    
+                                <div class="saveShare" style="display:flex">
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">bookmark</span>
+    
+                                    <span class="material-symbols-outlined"
+                                    style="color: rgb(78 78 78); cursor: pointer; transition: transform 0.1s ease;"
+                                    onmouseover="this.style.color='rgb(7, 148, 235)';this.style.transform='scale(1.1)';"
+                                    onmouseout="this.style.transform='scale(1)';this.style.color = 'rgb(78, 78, 78)';">ios_share</span>
+                                </div>
+                            </div>
+    
+    
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <div class="third w-full" style="padding-top: 10px; padding-left:25px">
+            <div class="search" style="padding-bottom: 15px;">
+                <input type="text" class="" placeholder="Search" style="width: 80%; background-color: rgb(49, 48, 48); 
+                           border-radius: 40px; border: none; color: white; 
+                           padding: 10px; 
+                           box-shadow: 0px 0px 8px rgba(238, 235, 235, 0.5);
+                           transition: box-shadow 0.1s ease, transform 0.1s ease;" onmouseover="this.style.boxShadow='0px 0px 12px rgba(255, 255, 255, 0.8)'; 
+                                 this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0px 0px 8px rgba(238, 235, 235, 0.5)'; 
+                                this.style.transform='scale(1)';" onfocus="this.style.boxShadow='0px 0px 15px rgba(7, 148, 235, 0.9)'; 
+                             this.style.outline='none';"
+                    onblur="this.style.boxShadow='0px 0px 8px rgba(238, 235, 235, 0.5)';">
+            </div>
+            <div class="bor" style="padding-bottom: 15px;">
+                <div class="whats" style="width: 80%; background-color: rgb(32, 31, 31); 
+                border-radius: 15px; border: none; color: white; 
+                padding: 10px; box-shadow: 0px 0px 8px rgba(238, 235, 235, 0.817);">
+                    <h1 style="font-size: larger; font-weight:bolder">Whats Happening</h1>
+                    <div class="item1" style="
+            margin-top: 10px; 
+            padding: 10px; 
+            border-radius: 10px;
+            cursor:pointer;
+            transition: background-color 0.1s ease, box-shadow 0.1s ease;"
+                        onmouseover="this.style.backgroundColor='rgb(30, 30, 30)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';"
+                        onmouseout="this.style.backgroundColor='black'; this.style.boxShadow='none';">
+
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">Trending in India</div>
+                        <div style="font-weight:bold">#Orry</div>
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">40.2k Posts</div>
+                    </div>
+
+
+
+                    <div class="item2" style="
+            margin-top: 10px; 
+            padding: 10px; 
+            border-radius: 10px;
+            cursor:pointer;
+            transition: background-color 0.1s ease, box-shadow 0.1s ease;"
+                        onmouseover="this.style.backgroundColor='rgb(30, 30, 30)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';"
+                        onmouseout="this.style.backgroundColor='black'; this.style.boxShadow='none';">
+
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">Trending in India</div>
+                        <div style="font-weight:bold">#MalvikaMohan</div>
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">20k Posts</div>
+                    </div>
+
+
+
+
+
+                    <div class="item3" style="
+            margin-top: 10px; 
+            padding: 10px; 
+            border-radius: 10px;
+            cursor:pointer;
+            transition: background-color 0.1s ease, box-shadow 0.1s ease;"
+                        onmouseover="this.style.backgroundColor='rgb(30, 30, 30)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';"
+                        onmouseout="this.style.backgroundColor='black'; this.style.boxShadow='none';">
+
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">Trending in India</div>
+                        <div style="font-weight:bold">#Iran</div>
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">137k Posts</div>
+                    </div>
+
+
+
+                    <div class="item4" style="
+                    margin-top: 10px; 
+                    padding: 10px; 
+                    border-radius: 10px;
+                    cursor:pointer;
+                    transition: background-color 0.1s ease, box-shadow 0.1s ease;"
+                        onmouseover="this.style.backgroundColor='rgb(30, 30, 30)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';"
+                        onmouseout="this.style.backgroundColor='black'; this.style.boxShadow='none';">
+
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">Mumbai Indians .
+                            Trending</div>
+                        <div style="font-weight:bold">Bumrah</div>
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">2,999 Posts</div>
+                    </div>
+
+
+
+
+                    <div class="item4" style="
+                            margin-top: 10px; 
+                            padding: 10px; 
+                            border-radius: 10px;
+                            cursor:pointer;
+                            transition: background-color 0.1s ease, box-shadow 0.1s ease;"
+                        onmouseover="this.style.backgroundColor='rgb(30, 30, 30)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';"
+                        onmouseout="this.style.backgroundColor='black'; this.style.boxShadow='none';">
+
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">SRH . Trending </div>
+                        <div style="font-weight:bold">#Captain Cummins</div>
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">4,000k Posts</div>
+                    </div>
+
+
+
+
+
+
+                    <div class="item5" style="
+                                    margin-top: 10px; 
+                                    padding: 10px; 
+                                    border-radius: 10px;
+                                    cursor:pointer;
+                                    transition: background-color 0.1s ease, box-shadow 0.1s ease;"
+                        onmouseover="this.style.backgroundColor='rgb(30, 30, 30)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';"
+                        onmouseout="this.style.backgroundColor='black'; this.style.boxShadow='none';">
+
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">Business and Finance .
+                            Trending</div>
+                        <div style="font-weight:bold">#Sreeleela</div>
+                        <div style="font-weight: bolder; font-size:small; color:rgb(78, 78, 78)">5,000k Posts</div>
+                    </div>
+
+
+
+
+                    <div style="
+            margin-top: 10px; 
+            padding: 10px; 
+            color: rgba(7, 148, 235, 0.863); 
+            font-weight: bold; 
+            text-align: center; 
+            cursor: pointer;
+            transition: color 0.1s ease, transform 0.1s ease, text-shadow 0.1s ease;" onmouseover="this.style.color='rgba(255, 255, 255, 0.9)'; 
+                     this.style.transform='scale(1.1)'; 
+                     this.style.textShadow='0px 0px 10px rgba(7, 148, 235, 0.8)';" onmouseout="this.style.color='rgba(7, 148, 235, 0.863)'; 
+                    this.style.transform='scale(1)'; 
+                    this.style.textShadow='none';">
+                        Show More
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="bor" style="padding-bottom: 15px;">
+                <div class="whats" style="width: 80%; background-color: rgb(32, 31, 31); 
+                border-radius: 15px; border: none; color: white; 
+                padding: 10px; box-shadow: 0px 0px 8px rgba(238, 235, 235, 0.817);">
+                    <h1 style="font-size: larger; font-weight:bolder">Who to Follow</h1>
+
+
+
+                    <div class="item1" style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px; 
+            padding: 10px; 
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: black;
+            transition: background-color 0.1s ease, box-shadow 0.1s ease;"
+                        onmouseover="this.style.backgroundColor='rgb(30, 30, 30)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';"
+                        onmouseout="this.style.backgroundColor='black'; this.style.boxShadow='none';">
+
+                        <div style="display: flex; gap: 10px;">
+                            <img src="./images/maldives.jpg" alt="" style="width:20%;height:20%;border-radius:40px">
+                            <div>
+                                <div class="handle"
+                                    style="font-weight: bold; padding: 5px 10px; border-radius: 5px; font-size:medium">
+                                    Visit Maldives
+                                </div>
+                                <div style="font-weight: bolder; font-size: small; color: rgb(78, 78, 78);">
+                                    @visitmaldives
+                                </div>
+                            </div>
+                        </div>
+
+                        <button style="background-color: white; 
+                   color: black; 
+                   font-weight: bold;
+                   border: none;
+                   padding: 6px 12px;
+                   border-radius: 20px;
+                   cursor: pointer;
+                   transition: background-color 0.1s ease, transform 0.2s ease;"
+                            onmouseover="this.style.backgroundColor='rgb(220, 220, 220)'; this.style.transform='scale(1.05)';"
+                            onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
+
+                            Follow Now
+                        </button>
+                    </div>
+
+
+
+                    <div class="item2" style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px; 
+            padding: 10px; 
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: black;
+            transition: background-color 0.1s ease, box-shadow 0.1s ease;"
+                        onmouseover="this.style.backgroundColor='rgb(30, 30, 30)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';"
+                        onmouseout="this.style.backgroundColor='black'; this.style.boxShadow='none';">
+
+                        <div style="display: flex; gap: 10px;">
+                            <img src="./images/as.jpg" alt="" style="width:20%;height:20%;border-radius:40px">
+                            <div>
+                                <div class="handle"
+                                    style="font-weight: bold; padding: 5px 10px; border-radius: 5px; font-size:medium">
+                                    Arijit Sing World
+                                </div>
+                                <div style="font-weight: bolder; font-size: small; color: rgb(78, 78, 78);">
+                                    @TheArijithSingg
+                                </div>
+                            </div>
+                        </div>
+
+                        <button style="background-color: white; 
+                   color: black; 
+                   font-weight: bold;
+                   border: none;
+                   padding: 6px 12px;
+                   border-radius: 20px;
+                   cursor: pointer;
+                   transition: background-color 0.1s ease, transform 0.2s ease;"
+                            onmouseover="this.style.backgroundColor='rgb(220, 220, 220)'; this.style.transform='scale(1.05)';"
+                            onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
+
+                            Follow Now
+                        </button>
+                    </div>
+
+
+
+
+
+                    <div class="item3" style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px; 
+            padding: 10px; 
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: black;
+            transition: background-color 0.1s ease, box-shadow 0.1s ease;"
+                        onmouseover="this.style.backgroundColor='rgb(30, 30, 30)'; this.style.boxShadow='0px 0px 10px rgba(255, 255, 255, 0.1)';"
+                        onmouseout="this.style.backgroundColor='black'; this.style.boxShadow='none';">
+
+                        <div style="display: flex; gap: 10px;">
+                            <img src="./images/maldives.jpg" alt="" style="width:20%;height:20%;border-radius:40px">
+                            <div>
+                                <div class="handle"
+                                    style="font-weight: bold; padding: 5px 10px; border-radius: 5px; font-size:medium">
+                                    Visit Maldives
+                                </div>
+                                <div style="font-weight: bolder; font-size: small; color: rgb(78, 78, 78);">
+                                    @visitmaldives
+                                </div>
+                            </div>
+                        </div>
+
+                        <button style="background-color: white; 
+                   color: black; 
+                   font-weight: bold;
+                   border: none;
+                   padding: 6px 12px;
+                   border-radius: 20px;
+                   cursor: pointer;
+                   transition: background-color 0.1s ease, transform 0.2s ease;"
+                            onmouseover="this.style.backgroundColor='rgb(220, 220, 220)'; this.style.transform='scale(1.05)';"
+                            onmouseout="this.style.backgroundColor='white'; this.style.transform='scale(1)';">
+
+                            Follow Now
+                        </button>
+                    </div>
+
+
+
+
+                    <div style="
+            margin-top: 10px; 
+            padding: 10px; 
+            color: rgba(7, 148, 235, 0.863); 
+            font-weight: bold; 
+            text-align: center; 
+            cursor: pointer;
+            transition: color 0.1s ease, transform 0.1s ease, text-shadow 0.1s ease;" onmouseover="this.style.color='rgba(255, 255, 255, 0.9)'; 
+                     this.style.transform='scale(1.1)'; 
+                     this.style.textShadow='0px 0px 10px rgba(7, 148, 235, 0.8)';" onmouseout="this.style.color='rgba(7, 148, 235, 0.863)'; 
+                    this.style.transform='scale(1)'; 
+                    this.style.textShadow='none';">
+                        Show More
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
